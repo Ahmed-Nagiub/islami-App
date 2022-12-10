@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../ahadeth_details.dart';
-import 'tabs/ahadeth.dart';
+import '../../sura_details/sura_details.dart';
 
 
-class HadethNumberItem extends StatelessWidget {
-  String name;
-  Hadeth hadeth;
-  HadethNumberItem(this.name,this.hadeth);
+class SuraNameItem extends StatelessWidget {
+  String suraName;
+  int index;
+
+  SuraNameItem(this.suraName,this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +15,13 @@ class HadethNumberItem extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(
           context,
-          HadethDetails.routeName,
-          arguments: hadeth,
+          SuraDetails.routeName,
+          arguments: SuraDetailsArgs(suraName,index),
         );
       },
       child: Center(
         child: Text(
-          name,
+          suraName,
           style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 20),
         ),
       ),

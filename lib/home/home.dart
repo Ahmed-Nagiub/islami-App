@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-
-import '../my_theme.dart';
-import 'tabs/ahadeth.dart';
-import 'tabs/quran.dart';
-import 'tabs/radio.dart';
-import 'tabs/sebha.dart';
-
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami_c7_fri/my_theme.dart';
+import 'package:islami_c7_fri/settings/settings.dart';
+import 'hadeth/ahadeth.dart';
+import 'quran/quran.dart';
+import 'radio/radio.dart';
+import 'sebha/sebha.dart';
+import 'package:provider/provider.dart';
+import 'package:islami_c7_fri/providers/my_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'Home';
@@ -16,21 +17,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int currentIndex=3;
-
+  int currentIndex=4;
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     return Stack(
       children: [
         Image.asset(
-          'assets/images/background.png',
+          provider.getBackground(),
           width: double.infinity,
           fit: BoxFit.fitWidth,
         ),
         Scaffold(
           appBar: AppBar(
             title: Text(
-              'islami',
+              AppLocalizations.of(context)!.islami,
               style: Theme.of(context).textTheme.headline1,
             ),
           ),
@@ -42,7 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
               setState(() {});
             },
             currentIndex: currentIndex,
-            items: const [
+            items:  [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings,size: 25),
+                label: 'settings',
+                backgroundColor: MyThemeData.colorGold,
+              ),
               BottomNavigationBarItem(
                 icon: ImageIcon(
                   AssetImage('assets/images/radio.png'),
@@ -58,7 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 label: 'sebha',
                 backgroundColor: MyThemeData.colorGold,
-              ),BottomNavigationBarItem(
+              ),
+              BottomNavigationBarItem(
                 icon: ImageIcon(
                   AssetImage('assets/images/ahadeth.png'),
                   size: 30,
@@ -81,9 +88,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
   List<Widget> tabs=[
+    settingsScreen(),
     RadioScreen(),
     SebhaScreen(),
     AhadethScreen(),
     QuranScreen(),
+
   ];
 }

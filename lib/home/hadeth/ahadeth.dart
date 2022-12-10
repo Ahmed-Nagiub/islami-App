@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../my_theme.dart';
-import '../hadeth_number_item.dart';
+import 'hadeth_number_item.dart';
 
 
 class AhadethScreen extends StatefulWidget {

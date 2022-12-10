@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'home/tabs/ahadeth.dart';
-
+import '../home/hadeth/ahadeth.dart';
+import 'package:provider/provider.dart';
+import 'package:islami_c7_fri/providers/my_provider.dart';
 
 class HadethDetails extends StatelessWidget {
   static const String routeName = 'HadethDetails';
@@ -9,11 +9,11 @@ class HadethDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as Hadeth;
-
+    var provider = Provider.of<MyProvider>(context);
     return Stack(
       children: [
         Image.asset(
-          'assets/images/background.png',
+          provider.getBackground(),
           width: double.infinity,
           fit: BoxFit.fitWidth,
         ),

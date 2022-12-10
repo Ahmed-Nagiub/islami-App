@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../my_theme.dart';
-import '../sura_name_item.dart';
+import 'sura_name_item.dart';
 
 class QuranScreen extends StatelessWidget {
 
@@ -27,7 +27,7 @@ class QuranScreen extends StatelessWidget {
         Expanded(
           child: ListView.separated(
             separatorBuilder: (context, index) {
-              return const Divider(
+              return Divider(
                 thickness: 1,
                 indent: 25,
                 endIndent: 25,
