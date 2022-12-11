@@ -35,10 +35,10 @@ class SuraDetails extends StatelessWidget {
                   ? Center(child: CircularProgressIndicator())
                   : ListView.separated(
                       separatorBuilder: (context, index) => Divider(
-                            color: MyThemeData.colorGold,
-                            indent: 30,
-                            endIndent: 30,
-                          ),
+                        color: MyThemeData.colorGold,
+                        indent: 30,
+                        endIndent: 30,
+                      ),
                       itemCount: pro.verses.length,
                       itemBuilder: (c, index) {
                         return Text(
@@ -53,7 +53,8 @@ class SuraDetails extends StatelessWidget {
                                   letterSpacing: .45),
                           textAlign: TextAlign.center,
                         );
-                      }),
+                      },
+                    ),
             ),
           ],
         );

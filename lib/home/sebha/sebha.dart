@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../my_theme.dart';
 
-
 class SebhaScreen extends StatefulWidget {
   @override
   State<SebhaScreen> createState() => _SebhaScreenState();
@@ -12,7 +11,6 @@ class _SebhaScreenState extends State<SebhaScreen> {
   String botton = 'سبحان الله';
 
   double doubleAngle = 0.0;
-
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +23,34 @@ class _SebhaScreenState extends State<SebhaScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 InkWell(
-                  onTap: (){
-                    doubleAngle+=10.0;
+                  onTap: () {
+                      doubleAngle += 10.0;
                     setState(() {});
                   },
-                    child: Transform.rotate(
-                        angle: doubleAngle,
-                        child: Image.asset('assets/images/sebha_bg_all.png'))),
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 50),
+                        child: Center(
+                          child: Image.asset('assets/images/head_seb7a.png'),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 75),
+                        child: Center(
+                          child: Transform(
+                            transform: Matrix4.identity()..rotateZ((doubleAngle*5.5)*3.14/180),
+                            alignment: FractionalOffset.center,
+                            transformHitTests: true,
+                            child: Image.asset(
+                              'assets/images/body_seb7a.png',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 Text(
                   'عدد التسبيحات',
                   style: Theme.of(context)
@@ -44,7 +63,9 @@ class _SebhaScreenState extends State<SebhaScreen> {
                   height: 81,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(25),),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(25),
+                    ),
                     color: Color.fromRGBO(183, 147, 95, 0.80),
                   ),
                   child: Text(
@@ -63,9 +84,8 @@ class _SebhaScreenState extends State<SebhaScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: MyThemeData.colorGold,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40)
-                    ),
-                    minimumSize:Size(130, 60),
+                        borderRadius: BorderRadius.circular(40)),
+                    minimumSize: Size(130, 60),
                   ),
                 )
               ],
@@ -75,22 +95,23 @@ class _SebhaScreenState extends State<SebhaScreen> {
       ],
     );
   }
+
   int counter = 0;
   int counter2 = 0;
-  List<String> tsbeh=['استغفر الله','الله اكبر','سبحان الله'];
+  List<String> tsbeh = ['استغفر الله', 'الله اكبر', 'سبحان الله'];
 
   void onBtnClicked() {
     counter++;
     if (counter == 33) {
-      if(counter2 == 2){
-        counter2=0;
-      }else {
+      if (counter2 == 2) {
+        counter2 = 0;
+      } else {
         counter2++;
       }
       botton = tsbeh[counter2];
-      counter=0;
+      counter = 0;
     }
-    doubleAngle+=10.0;
+    doubleAngle += 10.0;
     setState(() {});
   }
 }
